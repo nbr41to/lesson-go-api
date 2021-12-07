@@ -32,8 +32,6 @@ func userHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
 
-	println("userHandler")
-
 	/* 各APIメソッド */
 	switch r.Method {
 	case "GET":
@@ -78,7 +76,6 @@ func userHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-
 	/* ハンドラーを追加 */
 	http.HandleFunc("/", helloHandler)
 	http.HandleFunc("/user", userHandler)
