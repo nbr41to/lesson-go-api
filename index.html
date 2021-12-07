@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="get()">get</button>
+    <button onclick="post()">post</button>
+    <button onclick="put()">put</button>
+    <button onclick="deleteUser()">delete</button>
+    <pre id="users"></pre>
+    <script>
+      // GET
+      const get = async () => {
+        const response = await fetch('http://localhost:8080/user', {
+          method: 'GET',
+        });
+        const data = await response.json();
+        document.getElementById('users').innerHTML = JSON.stringify(
+          data,
+          null,
+          4,
+        );
+      };
+
+      // POST
+      const post = async () => {
+        const response = await fetch('http://localhost:8080/user', {
+          method: 'POST',
+          body: JSON.stringify({ name: 'Hanako', age: 50 }),
+        });
+        const data = await response.json();
+        console.log(data);
+      };
+
+      // PUT
+      const put = async () => {
+        const response = await fetch('http://localhost:8080/user', {
+          method: 'PUT',
+          body: JSON.stringify({ id: 1, name: 'Atsuhiko', age: 10 }),
+        });
+        const data = await response.json();
+        console.log(data);
+      };
+
+      // DELETE
+      const deleteUser = async () => {
+        const response = await fetch('http://localhost:8080/user/2', {
+          method: 'DELETE',
+        });
+        const data = await response.json();
+        console.log(data);
+      };
+    </script>
+  </body>
+</html>
